@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ingore the Data
+Data
+
+# Ignore the dumped model
+*.pkl
