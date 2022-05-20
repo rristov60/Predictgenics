@@ -133,3 +133,6 @@ Data
 
 # Ignore the dumped model
 *.pkl
+
+# Ignore flask
+flask/
