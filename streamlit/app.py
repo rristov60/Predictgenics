@@ -7,7 +7,8 @@ import pickle
 from unittest import result
 import pandas as pd
 import numpy as np
-  
+
+
 def predict(symptoms):
 
     if(len(symptoms) < 7):
@@ -28,7 +29,7 @@ def predict(symptoms):
     return res
 
 def predictAPI(symptoms):
-    pickled_model = pickle.load(open('../randomForestClassificator.pkl', 'rb'))
+    pickled_model = pickle.load(open('randomForestClassificator.pkl', 'rb'))
     predictVar = predict(symptoms)
     return pickled_model.predict(predictVar)[0]
 
@@ -71,24 +72,33 @@ University project app that predicts disease with given symptoms
 """
 )
 
+# For production
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+
+"""
+
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)  # For production
+
 ab_default = None
 result_default = None
 
-# df = pd.read_csv('../Data/Symptom-severity.csv')
-
-df_symptom_severity = pd.read_csv('../Data/Symptom-severity.csv')
+df_symptom_severity = pd.read_csv('Data/Symptom-severity.csv')
 df_symptom_severity['Symptom'] = df_symptom_severity['Symptom'].str.replace('_', ' ')
 
-df_disease_description = pd.read_csv('../Data/symptom_Description.csv')
-df_disease_preacaution = pd.read_csv('../Data/symptom_precaution.csv')
+df_disease_description = pd.read_csv('Data/symptom_Description.csv')
+df_disease_preacaution = pd.read_csv('Data/symptom_precaution.csv')
 
 
-st.markdown("### Provide Symptoms")
+st.markdown("### Experienced Symptoms")
 with st.form(key="my_form"):
     symptoms = st.multiselect(
         "Symptoms",
         options=df_symptom_severity['Symptom'].str.title(),
-        help="Provide symptoms that you are experiencing.",
+        help="Provide symptoms that you are experiencing. The number of provided symbols should at least **3** but no more than **7** !",
         default=ab_default,
     )
 

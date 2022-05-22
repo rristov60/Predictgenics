@@ -129,10 +129,10 @@ dmypy.json
 .pyre/
 
 # Ingore the Data
-Data
+# Data
 
 # Ignore the dumped model
-*.pkl
+# *.pkl
 
 # Ignore flask
 flask/
