@@ -1,2 +1,2 @@
-# predictgenics
+# Predictgenics
 Disease prediction model
